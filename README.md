@@ -99,7 +99,7 @@ streamlit run app.py --server.port=$PORT --server.enableCORS=false
 
 ## 🧠 Autor & Motivation
 
-Dieses Projekt wurde im Rahmen der Weiterbildung zum zertifizierten Data Scientist umgesetzt, um ein praxisnahes End-to-End-Projekt für Bewerbungen und Portfolio aufzubauen. Es dient gleichzeitig als Demonstration eines Fehlerindikators, der prinzipiell auch in eine Echtzeit-Fehleranalyse und IoT-Anbindung via Azure übertragbar ist – auch wenn der zugrunde liegende Datensatz simuliert ist und keine echten Live-Daten umfasst.
+Dieses Projekt wurde nach der Weiterbildung zum zertifizierten Data Scientist umgesetzt, um ein praxisnahes End-to-End-Projekt für Bewerbungen und Portfolio aufzubauen. Es dient gleichzeitig als Demonstration eines Fehlerindikators, der prinzipiell auch in eine Echtzeit-Fehleranalyse und IoT-Anbindung via Azure übertragbar ist – auch wenn der zugrunde liegende Datensatz simuliert ist und keine echten Live-Daten umfasst.
 
 ---
 
