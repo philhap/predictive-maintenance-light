@@ -1,7 +1,7 @@
-# 📁 src/predict_from_file.py
 import pandas as pd
 import pickle
 import os
+from utils import prepare_features
 
 # Basisverzeichnis ermitteln (relativ zu dieser Datei)
 base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,11 +22,7 @@ with open(iso_model_path, 'rb') as f:
     iso, iso_cols = pickle.load(f)
 
 # Eingabedaten vorbereiten
-X = pd.get_dummies(input_df, drop_first=True)
-for col in rf_cols:
-    if col not in X.columns:
-        X[col] = 0
-X = X[rf_cols]
+X = prepare_features(input_df, rf_cols)
 
 # Vorhersagen berechnen
 rf_proba = rf.predict_proba(X)[:, 1]

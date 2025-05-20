@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier, IsolationForest
 import pickle
+from utils import prepare_features
 
 # Dynamischer Pfad
 base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,11 +12,12 @@ model_dir = os.path.join(base_path, 'models')
 # Daten laden
 print("Lese CSV:", data_path)
 df = pd.read_csv(data_path)
-
-# Features vorbereiten
 y = df['Machine failure']
 features = ['Torque [Nm]', 'Tool wear [min]', 'Rotational speed [rpm]', 'Process temperature [K]', 'Type']
-X = pd.get_dummies(df[features], drop_first=True)
+
+# Feature Columns initialisieren (z. B. aus vollständigen Dummy-Daten)
+dummy_reference = pd.get_dummies(df[features], drop_first=True)
+X = prepare_features(df[features], dummy_reference.columns.tolist())
 
 # Modelle trainieren
 rf = RandomForestClassifier(n_estimators=100, random_state=42)

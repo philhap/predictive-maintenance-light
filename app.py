@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import pickle
 import os
 from sklearn.ensemble import IsolationForest
+from src.utils import prepare_features
 
 # ----------------------------
 # 1. Daten & Modelle laden
@@ -27,11 +28,7 @@ with open(iso_model_path, 'rb') as f:
 
 # Features vorbereiten
 features = ['Torque [Nm]', 'Tool wear [min]', 'Rotational speed [rpm]', 'Process temperature [K]', 'Type']
-X = pd.get_dummies(df[features], drop_first=True)
-for col in rf_cols:
-    if col not in X.columns:
-        X[col] = 0
-X = X[rf_cols]
+X = prepare_features(df[features], rf_cols)
 
 # Berechnungen
 df['rf_proba'] = rf.predict_proba(X)[:, 1]
