@@ -39,8 +39,8 @@ Predictive-Maintenance light/
 │   ├── train_model.py
 │   └── predict_from_file.py
 ├── .gitignore
-├── app.py
 ├── README.md
+├── app.py
 └── requirements.txt
 ```
 
