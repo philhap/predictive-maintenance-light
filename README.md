@@ -25,8 +25,8 @@ Predictive-Maintenance light/
 │   ├── prediction-data.csv
 │   └── predictions.csv
 ├── models/
-│   ├── model_rf.pkl
-│   └── model_iso.pkl
+│   ├── model_iso.pkl
+│   └── model_rf.pkl
 ├── notebooks/
 │   ├── 01_data_exploration.ipynb
 │   ├── 02_isolation_forest_featurevergleich.ipynb
@@ -36,12 +36,22 @@ Predictive-Maintenance light/
 │   ├── 06_multilabel_failuretypes.ipynb
 │   └── 07_fehlerindikator.ipynb
 ├── src/
+│   ├── predict_from_file.py
 │   ├── train_model.py
-│   └── predict_from_file.py
+│   └── utils.py
 ├── .gitignore
 ├── README.md
 ├── app.py
+├── image.png
 └── requirements.txt
+```
+📝 Hinweis:  
+Erstelle zusätzlich einen Ordner `.venv/` für deine virtuelle Umgebung, der in `.gitignore` aufgeführt sein sollte:
+```
+# .gitignore
+.venv/
+__pycache__/
+*.pyc
 ```
 
 ## 🚀 Start der App
