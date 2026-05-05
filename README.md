@@ -2,6 +2,8 @@
 
 Ein interaktives Data-Science-Projekt zur Fehlererkennung und Risikobewertung bei Fräsmaschinen mit Hilfe von Machine Learning, basierend auf dem AI4I 2020 Datensatz.
 
+🔗 [Live-Demo auf Streamlit Cloud](https://predictive-maintenance-light.streamlit.app/)
+
 ## 📌 Projektziel
 
 Dieses Dashboard kombiniert klassische Klassifikation (Random Forest), Anomalie-Erkennung (Isolation Forest) und Werkzeugverschleiß (Tool Wear) zu einem kombinierten **Risikowert**. Ziel ist es, Fehlerzustände frühzeitig zu erkennen, zu simulieren und eine fundierte Grundlage für Predictive-Maintenance-Maßnahmen zu schaffen.
