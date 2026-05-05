@@ -52,38 +52,9 @@ df['risk_label'] = df['risk_score'].apply(classify_risk)
 st.set_page_config(page_title="Predictive Maintenance Dashboard", layout="wide")
 st.title("🔧 Predictive Maintenance – Fehlerindikator Dashboard")
 
-# Filteroption
-st.sidebar.header("🔍 Filter")
-risk_filter = st.sidebar.multiselect(
-    "Risikostufe auswählen",
-    options=df['risk_label'].unique(),
-    default=df['risk_label'].unique()
-)
-
-df_filtered = df[df['risk_label'].isin(risk_filter)]
-
-# Tabelle
-st.subheader("🧾 Übersicht der Maschinenzustände")
-st.dataframe(df_filtered[['Torque [Nm]', 'Tool wear [min]', 'rf_proba', 'anomaly_flag', 'risk_score', 'risk_label']].round(3))
-
-# Balkendiagramm
-st.subheader("📊 Verteilung der Risikostufen")
-fig, ax = plt.subplots()
-sns.countplot(x='risk_label', data=df_filtered, order=['Unkritisch', 'Verdächtig', 'Hochrisiko'], palette="Set2", ax=ax)
-st.pyplot(fig)
-
-# Export
-st.download_button(
-    label="📤 Exportiere gefilterte Daten als CSV",
-    data=df_filtered.to_csv(index=False).encode('utf-8'),
-    file_name='fehlerindikator_export.csv',
-    mime='text/csv'
-)
-
 # ----------------------------
 # 3. Manuelle Eingabe
 # ----------------------------
-st.markdown("---")
 st.subheader("🛠️ Manuelle Eingabe: Risikobewertung simulieren")
 
 with st.form("manual_input"):
@@ -130,4 +101,37 @@ with st.form("manual_input"):
         st.markdown(f"**Risikostufe:** <span style='color:{color}; font-size:24px'>{label}</span>", unsafe_allow_html=True)
         st.markdown(f"**Risikowert:** `{risk_score:.3f}`")
         st.markdown(f"**RF-Wahrscheinlichkeit:** `{rf_score:.3f}`  |  **Tool wear (skaliert):** `{tool_wear_scaled:.3f}`  |  **Anomalie erkannt:** `{bool(anomaly)}`")
+
+st.markdown("---")
+
+# ----------------------------
+# 4. Übersicht & Verteilung (EDA)
+# ----------------------------
+# Filteroption
+st.sidebar.header("🔍 Filter")
+risk_filter = st.sidebar.multiselect(
+    "Risikostufe auswählen",
+    options=df['risk_label'].unique(),
+    default=df['risk_label'].unique()
+)
+
+df_filtered = df[df['risk_label'].isin(risk_filter)]
+
+# Tabelle
+st.subheader("🧾 Übersicht der Maschinenzustände")
+st.dataframe(df_filtered[['Torque [Nm]', 'Tool wear [min]', 'rf_proba', 'anomaly_flag', 'risk_score', 'risk_label']].round(3))
+
+# Balkendiagramm
+st.subheader("📊 Verteilung der Risikostufen")
+fig, ax = plt.subplots()
+sns.countplot(x='risk_label', data=df_filtered, order=['Unkritisch', 'Verdächtig', 'Hochrisiko'], palette="Set2", ax=ax)
+st.pyplot(fig)
+
+# Export
+st.download_button(
+    label="📤 Exportiere gefilterte Daten als CSV",
+    data=df_filtered.to_csv(index=False).encode('utf-8'),
+    file_name='fehlerindikator_export.csv',
+    mime='text/csv'
+)
 
